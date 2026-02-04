@@ -40,6 +40,9 @@ fi
 # Generate password
 PASSWORD=$(openssl rand -base64 20 | tr -d "=+/" | cut -c1-16)
 
+# Get private IP
+PRIVATE_IP=$(hostname -I | awk '{print $1}')
+
 # Check PostgreSQL is running
 if ! systemctl is-active --quiet postgresql; then
     log_error "PostgreSQL is not running"
@@ -79,9 +82,13 @@ if PGPASSWORD="$PASSWORD" psql -h localhost -U "$USER_NAME" -d "$DB_NAME" -c "SE
     echo "Database: $DB_NAME"
     echo "Username: $USER_NAME"
     echo "Password: $PASSWORD"
+    echo "Private IP: $PRIVATE_IP"
     echo ""
-    echo "Connection: postgresql://$USER_NAME:$PASSWORD@localhost:5432/$DB_NAME"
-    echo "Test: psql -h localhost -U $USER_NAME -d $DB_NAME"
+    echo "Local Connection: postgresql://$USER_NAME:$PASSWORD@localhost:5432/$DB_NAME"
+    echo "Remote Connection: postgresql://$USER_NAME:$PASSWORD@$PRIVATE_IP:5432/$DB_NAME"
+    echo ""
+    echo "Test Local: psql -h localhost -U $USER_NAME -d $DB_NAME"
+    echo "Test Remote: psql -h $PRIVATE_IP -U $USER_NAME -d $DB_NAME"
 else
     log_error "Connection test failed"
     exit 1
