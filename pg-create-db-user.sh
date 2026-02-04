@@ -6,10 +6,10 @@
 #   ./create-db-user.sh <db_name> <user_name>
 #
 # Hoặc chạy trực tiếp bằng curl (không cần tải file về):
-#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/create-db-user.sh | bash -s <db_name> <user_name>
+#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/pg-create-db-user.sh | bash -s <db_name> <user_name>
 #
 # Ví dụ:
-#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/create-db-user.sh | bash -s mydb myuser
+#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/pg-create-db-user.sh | bash -s mydb myuser
 
 
 set -e
