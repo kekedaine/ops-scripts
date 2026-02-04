@@ -84,7 +84,6 @@ if PGPASSWORD="$PASSWORD" psql -h localhost -U "$USER_NAME" -d "$DB_NAME" -c "SE
     echo "Password: $PASSWORD"
     echo "Private IP: $PRIVATE_IP"
     echo ""
-    echo "Local Connection: postgresql://$USER_NAME:$PASSWORD@localhost:5432/$DB_NAME"
     echo "Remote Connection: postgresql://$USER_NAME:$PASSWORD@$PRIVATE_IP:5432/$DB_NAME"
     echo ""
     echo "Test Local: psql -h localhost -U $USER_NAME -d $DB_NAME"

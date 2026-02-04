@@ -109,7 +109,6 @@ if PGPASSWORD="$PASSWORD" psql -h localhost -U "$OWNER_NAME" -d "$DB_NAME" -c "S
     echo "Private IP: $PRIVATE_IP"
     echo "Previous Owner: $CURRENT_OWNER"
     echo ""
-    echo "Local Connection: postgresql://$OWNER_NAME:$PASSWORD@localhost:5432/$DB_NAME"
     echo "Remote Connection: postgresql://$OWNER_NAME:$PASSWORD@$PRIVATE_IP:5432/$DB_NAME"
     echo ""
     echo "Test Local: psql -h localhost -U $OWNER_NAME -d $DB_NAME"
