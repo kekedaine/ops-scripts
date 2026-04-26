@@ -6,10 +6,10 @@
 #   ./pg-create-readonly-user-for-exist-db.sh <existing_db_name> <readonly_user_name>
 #
 # Hoặc chạy trực tiếp bằng curl (không cần tải file về):
-#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/pg-create-readonly-user-for-exist-db.sh | bash -s <existing_db_name> <readonly_user_name>
+#   curl -fsSL https://ops.bhtas.co/pg-create-readonly-user-for-exist-db.sh | bash -s <existing_db_name> <readonly_user_name>
 #
 # Ví dụ:
-#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/pg-create-readonly-user-for-exist-db.sh | bash -s mydb readonly_user
+#   curl -fsSL https://ops.bhtas.co/pg-create-readonly-user-for-exist-db.sh | bash -s mydb readonly_user
 
 set -e
 

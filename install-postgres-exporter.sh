@@ -4,8 +4,8 @@
 # Based on: https://github.com/prometheus-community/postgres_exporter
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/install-postgres-exporter.sh | sudo bash -s uninstall_old_service
-#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/install-postgres-exporter.sh | sudo POSTGRES_EXPORTER_PORT=9999 bash
+#   curl -fsSL https://ops.bhtas.co/install-postgres-exporter.sh | sudo bash -s uninstall_old_service
+#   curl -fsSL https://ops.bhtas.co/install-postgres-exporter.sh | sudo POSTGRES_EXPORTER_PORT=9999 bash
 #
 # Parameters:
 #   uninstall_old_service - Remove existing postgres_exporter service before installation

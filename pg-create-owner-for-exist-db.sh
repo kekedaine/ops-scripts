@@ -6,10 +6,10 @@
 #   ./pg-create-owner-for-exist-db.sh <existing_db_name> <new_owner_name>
 #
 # Hoặc chạy trực tiếp bằng curl (không cần tải file về):
-#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/pg-create-owner-for-exist-db.sh | bash -s <existing_db_name> <new_owner_name>
+#   curl -fsSL https://ops.bhtas.co/pg-create-owner-for-exist-db.sh | bash -s <existing_db_name> <new_owner_name>
 #
 # Ví dụ:
-#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/pg-create-owner-for-exist-db.sh | bash -s mydb myowner
+#   curl -fsSL https://ops.bhtas.co/pg-create-owner-for-exist-db.sh | bash -s mydb myowner
 
 set -e
 

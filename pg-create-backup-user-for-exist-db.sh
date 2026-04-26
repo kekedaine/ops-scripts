@@ -6,10 +6,10 @@
 #   ./pg-create-backup-user-for-exist-db.sh <existing_db_name> <backup_user_name>
 #
 # Hoặc chạy trực tiếp bằng curl (không cần tải file về):
-#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/pg-create-backup-user-for-exist-db.sh | bash -s <existing_db_name> <backup_user_name>
+#   curl -fsSL https://ops.bhtas.co/pg-create-backup-user-for-exist-db.sh | bash -s <existing_db_name> <backup_user_name>
 #
 # Ví dụ:
-#   curl -fsSL https://raw.githubusercontent.com/kekedaine/ops-scripts/refs/heads/main/pg-create-backup-user-for-exist-db.sh | bash -s mydb backup_user
+#   curl -fsSL https://ops.bhtas.co/pg-create-backup-user-for-exist-db.sh | bash -s mydb backup_user
 
 set -e
 
