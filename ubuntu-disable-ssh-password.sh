@@ -174,8 +174,6 @@ print_banner_done() {
     echo "  Finished: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
     echo "========================================================"
     echo ""
-    log_warn "Keep your current SSH session open and verify key-based login from a NEW session before disconnecting."
-    echo ""
 }
 
 # Print effective settings (returned via globals for the done banner)
