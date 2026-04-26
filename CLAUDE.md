@@ -21,6 +21,12 @@ Remote: https://github.com/kekedaine/ops-scripts
 - Always `#!/bin/bash` and `set -e`.
 - Header comment: short description + local usage example + `curl | bash` example.
 
+### Versioning
+- Declare a `SCRIPT_VERSION="YYYYMMDD-HHmmss"` constant (UTC) right after `set -e`.
+- Bump it on every release (any change pushed to `main`).
+- Print it in the start banner so users running via `curl | bash` can verify
+  which version is actually executing (proxy / CDN cache may serve stale copies).
+
 ### Logging
 - Color codes:
   ```

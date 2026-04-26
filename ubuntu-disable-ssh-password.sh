@@ -13,6 +13,9 @@
 
 set -e
 
+# Bump on every release. Format: YYYYMMDD-HHmmss (UTC).
+SCRIPT_VERSION="20260426-180300"
+
 # Colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
@@ -155,7 +158,8 @@ print_banner_start() {
     echo ""
     echo "========================================================"
     echo "  Ubuntu SSH Password Authentication Disabler"
-    echo "  Target: Ubuntu 20.04 -> 26.04"
+    echo "  Target:  Ubuntu 20.04 -> 26.04"
+    echo "  Version: ${SCRIPT_VERSION}"
     echo "  Started: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
     echo "========================================================"
     echo ""
