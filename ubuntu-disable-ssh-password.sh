@@ -150,31 +150,63 @@ disable_ssh_password_auth() {
     log_success "SSH password authentication disabled"
 }
 
-# Print effective settings
-print_summary() {
-    local effective_password effective_kbd
-    effective_password=$(sudo sshd -T 2>/dev/null | awk '/^passwordauthentication/ {print $2}')
-    effective_kbd=$(sudo sshd -T 2>/dev/null | awk '/^kbdinteractiveauthentication/ {print $2}')
+# Banners
+print_banner_start() {
+    echo ""
+    echo "========================================================"
+    echo "  Ubuntu SSH Password Authentication Disabler"
+    echo "  Target: Ubuntu 20.04 -> 26.04"
+    echo "  Started: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+    echo "========================================================"
+    echo ""
+}
+
+print_banner_done() {
+    local password_status="$1"
+    local kbd_status="$2"
 
     echo ""
-    echo "Effective settings (from 'sshd -T'):"
-    echo "  PasswordAuthentication:        ${effective_password:-unknown}"
-    echo "  KbdInteractiveAuthentication:  ${effective_kbd:-unknown}"
+    echo "========================================================"
+    echo "  ✅ COMPLETED — SSH password authentication disabled"
+    echo "========================================================"
+    echo "  PasswordAuthentication:        ${password_status:-unknown}"
+    echo "  KbdInteractiveAuthentication:  ${kbd_status:-unknown}"
+    echo "  Finished: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+    echo "========================================================"
     echo ""
     log_warn "Keep your current SSH session open and verify key-based login from a NEW session before disconnecting."
+    echo ""
+}
+
+# Print effective settings (returned via globals for the done banner)
+read_effective_settings() {
+    EFFECTIVE_PASSWORD=$(sudo sshd -T 2>/dev/null | awk '/^passwordauthentication/ {print $2}')
+    EFFECTIVE_KBD=$(sudo sshd -T 2>/dev/null | awk '/^kbdinteractiveauthentication/ {print $2}')
 }
 
 # Main
 main() {
+    print_banner_start
+
     if [[ $EUID -ne 0 ]]; then
         log_error "This script must be run as root (use sudo)"
         exit 1
     fi
 
+    log_info "Step 1/4: Verifying Ubuntu version..."
     check_ubuntu_version
+
+    log_info "Step 2/4: Checking authorized SSH keys..."
     check_authorized_keys
+    log_success "Authorized keys present — safe to proceed"
+
+    log_info "Step 3/4: Applying SSH config changes..."
     disable_ssh_password_auth
-    print_summary
+
+    log_info "Step 4/4: Reading effective settings..."
+    read_effective_settings
+
+    print_banner_done "${EFFECTIVE_PASSWORD}" "${EFFECTIVE_KBD}"
 }
 
 main "$@"
