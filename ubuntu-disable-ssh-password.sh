@@ -198,10 +198,17 @@ main() {
     check_authorized_keys
     log_success "Authorized keys present — safe to proceed"
 
-    log_info "Step 3/4: Applying SSH config changes..."
-    disable_ssh_password_auth
+    log_info "Step 3/4: Checking current SSH settings..."
+    read_effective_settings
+    if [ "${EFFECTIVE_PASSWORD}" = "no" ] && [ "${EFFECTIVE_KBD}" = "no" ]; then
+        log_success "SSH password auth already disabled — no changes made (no backup, no restart)"
+        print_banner_done "${EFFECTIVE_PASSWORD}" "${EFFECTIVE_KBD}"
+        exit 0
+    fi
+    log_info "Current state: PasswordAuthentication=${EFFECTIVE_PASSWORD:-unknown}, KbdInteractiveAuthentication=${EFFECTIVE_KBD:-unknown}"
 
-    log_info "Step 4/4: Reading effective settings..."
+    log_info "Step 4/4: Applying SSH config changes..."
+    disable_ssh_password_auth
     read_effective_settings
 
     print_banner_done "${EFFECTIVE_PASSWORD}" "${EFFECTIVE_KBD}"
